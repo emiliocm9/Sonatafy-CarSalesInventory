@@ -1,2 +1,19 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
+<%= form_for @car, url: cars_path, html: { method: :post }  do |f|%>
+    <div class="column">
+        <%= f.label :name, 'Car model name' %> <br/>
+        <%= f.text_field :name %>
+    </div>
+    <div class="column">
+        <%= f.label :price, 'Car price' %> <br/>
+        <%= f.number_field :price %>
+    </div>
+    <div class="column">
+        <%= f.label :status, 'Car status' %> <br/>
+        <%= f.select :status, ['new', 'used'], include_blank: true %>
+    </div>
+    <div class="column">
+        <%= f.label :dealer_ship_id, 'Car status' %> <br/>
+        <%= f.select :dealer_ship_id, DealerShip.all.collect {|s| [s.name, s.id]}, include_blank: true %>
+    </div>
+    <%= f.submit 'Save new car', class: 'button is-primary is-rounded', style: 'padding: 0 3rem;' %>
+<% end %>

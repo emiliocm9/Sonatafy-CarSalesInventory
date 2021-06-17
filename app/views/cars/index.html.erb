@@ -1,2 +1,19 @@
-<h1>Cars#index</h1>
-<p>Find me in app/views/cars/index.html.erb</p>
+<h1>Welcome <%= @user.name %></h1>
+<table>
+<% @cars.each do |car| %>
+    <p>Name: <%= car.name %></p>
+    <p>Status: <%= car.status %></p>
+    <p>Price: <%= car.price %></p>
+    <p>Dealership: <%= car.dealer_ship.name %></p>
+    <% if @user.role == 'admin' %>
+        <%=link_to 'Remove car', car_path(car), method: :delete %>
+    <% end %>
+    <br/>
+    <% if @user.role == 'admin' %>
+        <%=link_to 'Edit car', edit_car_path(car) %>
+    <% end %>
+<% end %>
+<br/><br/>
+<% if @user.role == 'admin' %>
+    <%=link_to 'Add new car', new_car_path %>
+<% end %>

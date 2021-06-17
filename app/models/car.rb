@@ -1,4 +1,5 @@
 class Car < ApplicationRecord
     validates :name, presence: true
-    validates :role, presence: true
+
+    belongs_to :dealer_ship
 end

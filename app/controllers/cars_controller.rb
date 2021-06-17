@@ -6,7 +6,7 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Site.new(site_params)
+    @car = Car.new(car_params)
 
     if @car.save
       redirect_to cars_path,
@@ -28,13 +28,14 @@ class CarsController < ApplicationController
   def edit; end
 
   def destroy
-    @site.destroy
+    @car.destroy
     redirect_to cars_path,
                 notice: 'Site was successfully destroyed.'
   end
 
   def index
     @cars = Car.all
+    @user = User.find(session[:user_id])
   end
 
   private
@@ -43,7 +44,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
   end
 
-  def site_params
+  def car_params
     params.require(:car).permit(:name, :status, :price, :dealer_ship_id)
   end
 
