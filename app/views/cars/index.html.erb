@@ -18,6 +18,4 @@
     <%=link_to 'Add new car', new_car_path %>
 <% end %>
 <br/><br/>
-<% if @user.role == 'admin' %>
-    <%=link_to 'Log out', 'logout' %>
-<% end %>
+<%=link_to 'Log out', 'logout' %>
