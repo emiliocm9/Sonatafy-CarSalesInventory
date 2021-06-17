@@ -17,7 +17,7 @@ You can get a local copy of the repository please run the following commands on 
 
 $ cd <folder>
 
-$ git clone git@github.com:emiliocm9/micro-reddit.git
+$ git clone https://github.com/emiliocm9/Sonatafy-CarSalesInventory.git
 
 ### Prerequisites
 
