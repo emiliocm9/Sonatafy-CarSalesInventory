@@ -1,5 +1,7 @@
 class CarsController < ApplicationController
   before_action :load_car, only: %i(edit update destroy)
+  before_action :validate_session_admin, only: %i(new create edit update destroy)
+  before_action :validate_session
 
   def new
     @car = Car.new
@@ -39,6 +41,22 @@ class CarsController < ApplicationController
   end
 
   private
+
+  def validate_session_admin
+    @user = User.find(session[:user_id])
+    if @user.role != 'admin'
+      redirect_to '/'
+      session[:user_id] = nil
+    end
+  end
+
+  def validate_session
+    @user = User.find(session[:user_id])
+    if @user.nil?
+      redirect_to '/'
+      session[:user_id] = nil
+    end
+  end
 
   def load_car
     @car = Car.find(params[:id])
