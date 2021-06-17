@@ -1,27 +1,50 @@
 class CarsController < ApplicationController
-    before_action :load_car, only: %i(edit update)
+  before_action :load_car, only: %i(edit update destroy)
 
-    def index; end
+  def new
+    @car = Car.new
+  end
 
-    def new
-        @car = Car.new
+  def create
+    @car = Site.new(site_params)
+
+    if @car.save
+      redirect_to cars_path,
+                  notice: 'Car was successfully created.'
+    else
+      render :new
     end
+  end
 
-    def edit; end
-
-    def update; end
-
-    def create; end
-
-    def destroy; end
-
-    private
-
-    def load_car
-        @car = Car.find(params[:id])
+  def update
+    if @car.update(car_params)
+      redirect_to cars_path,
+                  notice: 'Car was successfully updated.'
+    else
+      render :edit
     end
+  end
 
-    def invite_params
-        params.require(:invite).permit(:first_name, :last_name, :email, :relationship).merge(site_id: Current.site.id)
-    end
+  def edit; end
+
+  def destroy
+    @site.destroy
+    redirect_to cars_path,
+                notice: 'Site was successfully destroyed.'
+  end
+
+  def index
+    @cars = Car.all
+  end
+
+  private
+
+  def load_car
+    @car = Car.find(params[:id])
+  end
+
+  def site_params
+    params.require(:car).permit(:name, :status, :price, :dealer_ship_id)
+  end
+
 end

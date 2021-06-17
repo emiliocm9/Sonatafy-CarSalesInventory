@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_145131) do
+ActiveRecord::Schema.define(version: 2021_06_17_153616) do
 
   create_table "cars", force: :cascade do |t|
     t.decimal "price"
     t.string "status"
     t.integer "dealer_ship_id"
+    t.string "name"
     t.index ["dealer_ship_id"], name: "index_cars_on_dealer_ship_id"
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "dealer_ships", force: :cascade do |t|
