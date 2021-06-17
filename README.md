@@ -21,8 +21,8 @@ $ git clone git@github.com:emiliocm9/micro-reddit.git
 
 ### Prerequisites
 
-Ruby: 2.6.3
-Rails: 5.2.3
+Ruby: 2.5.8
+Rails: 5.2.5
 Postgres: >=9.5
 
 ### Setup
